@@ -1,0 +1,37 @@
+<div id="login-container">
+  <!-- Header -->
+  <header>
+    <h1 class="title"> Sign in </h1>
+  </header>
+
+  <!-- Login Form -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- Email -->
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="text" formControlName="email" placeholder="admin@admin.com" matInput>
+      <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('required')">
+        <strong> Required </strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input type="password" formControlName="password" placeholder="password" matInput>
+      <mat-error *ngIf="form.controls['password'].hasError('required')">
+        <strong> Required </strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Submit -->
+    <button type="submit" [disabled]="isLoading" mat-raised-button color="primary">
+      Sign in
+    </button>
+
+  </form>
+</div>
