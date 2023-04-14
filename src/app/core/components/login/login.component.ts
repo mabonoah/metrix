@@ -2,9 +2,8 @@ import { SnackBarService } from './../../../shared/services/snack-bar.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { Login } from '../../interfaces/login.interface';
-import { HttpResponse } from '../../interfaces/http-response.interface';
+import { AuthService } from '../../services';
+import { Login, HttpResponse } from '../../interfaces';
 
 
 @Component({
@@ -25,7 +24,10 @@ export class LoginComponent {
     private authService: AuthService,
     private snackBarService: SnackBarService,
     private router: Router,
-  ) { }
+  ) {
+    if (this.authService.isLoggedIn())
+      this.navigateToDefaultPage();
+  }
 
   ngOnInit(): void {
   }
@@ -50,7 +52,12 @@ export class LoginComponent {
   }
 
   private successHandler(data: any) {
-    console.log('success: ', data);
+    this.authService.setAccessToken(data.accessToken);
+    this.navigateToDefaultPage();
+  }
+
+  private navigateToDefaultPage(): void {
+    this.router.navigate(['/views/add-object']);
   }
 
   private errorHandler(message: string) {
