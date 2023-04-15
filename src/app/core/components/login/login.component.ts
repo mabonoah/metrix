@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services';
-import { Login, HttpResponse } from '../../interfaces';
+import { Login, MetrixHttpResponse } from '../../interfaces';
 
 
 @Component({
@@ -36,10 +36,10 @@ export class LoginComponent {
     if (this.form.invalid) return;
     this.isLoading = true;
     this.authService.login(this.loginFormData)
-      .subscribe((res: HttpResponse) => {
+      .subscribe((res: MetrixHttpResponse) => {
         this.isLoading = false;
-        if (res.code === 1) this.successHandler(res.data);
-        else this.errorHandler(res.message);
+        if (res.code === 1) this.onSuccess(res.data);
+        else this.onError(res.message);
       });
   }
 
@@ -51,7 +51,7 @@ export class LoginComponent {
     return formData;
   }
 
-  private successHandler(data: any) {
+  private onSuccess(data: any) {
     this.authService.setAccessToken(data.accessToken);
     this.navigateToDefaultPage();
   }
@@ -60,7 +60,7 @@ export class LoginComponent {
     this.router.navigate(['/views/add-object']);
   }
 
-  private errorHandler(message: string) {
+  private onError(message: string) {
     this.snackBarService.openSnackBar(message, 'Sign in');
   }
 

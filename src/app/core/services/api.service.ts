@@ -11,7 +11,7 @@ export class APIService {
 
   constructor(private http: HttpClient) { }
 
-  post(url: string, body: any): Observable<any> {
+  post(url: string, body: any = null): Observable<any> {
     return this.http.post(this.baseUrl + url, body);
   }
 

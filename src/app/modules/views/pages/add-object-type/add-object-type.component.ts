@@ -7,7 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AddObjectTypeComponent {
 
-  ngOnInit() {
-    console.log('AddObjectTypeComponent');
-  }
+  ngOnInit() {}
 }
