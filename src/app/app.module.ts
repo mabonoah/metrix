@@ -7,12 +7,14 @@ import { SharedModule } from './shared/modules/shared.module';
 
 /** Components */
 import { AppComponent } from './app.component';
-import { LoginComponent } from './core/components';
+import { LoginComponent, LayoutComponent, HeaderComponent } from './core/components';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
