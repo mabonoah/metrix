@@ -1,3 +1,4 @@
+import { SpinnerService } from './../../../../shared/services/spinner.service';
 import { Component } from '@angular/core';
 import { Subordinate } from '../../models';
 import { SubordinatesController } from '../../controllers';
@@ -19,6 +20,7 @@ export class SubordinatesComponent {
 
   constructor(
     private controller: SubordinatesController,
+    private spinnerService: SpinnerService,
     private snackBarService: SnackBarService,
     private store: Store
   ) {
@@ -31,8 +33,10 @@ export class SubordinatesComponent {
   }
 
   getSubordinates(): void {
+    this.spinnerService.show();
     this.controller.getSubordinates()
       .subscribe((res: MetrixHttpResponse) => {
+        this.spinnerService.hide();
         if (res.code === 1) this.onSuccess(res.data);
         else this.onError(res.message);
       });
