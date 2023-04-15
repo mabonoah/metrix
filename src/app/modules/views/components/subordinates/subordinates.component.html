@@ -7,7 +7,7 @@
       <div class="col-sm-12 col-md-3">
         <ul class="card-header-actions float-right">
           <li class="float-right ml-2">
-            <a data-toggle="modal" data-target="#link-objects" (click)="onOpenModal()" class="header-actions">
+            <a data-toggle="modal" data-target="#link-objects" class="header-actions">
               <img src="assets/images/add.svg" />
             </a>
           </li>
@@ -30,7 +30,7 @@
       <div class="table-container sub-table scrollLeg">
         <table class="table table-striped table-hover">
           <tbody>
-            <tr *ngFor="let item of dataSource">
+            <tr *ngFor="let item of subordinates$ | async">
               <ng-container *ngIf="item.selected">
                 <td width="15%"><span>{{item.ID}}</span></td>
                 <td class="text-left" width="35%">
@@ -106,7 +106,7 @@
           <div class="table-container scrollLeg">
             <table class="table table-striped table-hover" #dataModal>
               <tbody>
-                <tr *ngFor="let item of modalDataSource">
+                <tr *ngFor="let item of modalSubordinates">
                   <td width="10%">
                     <div class="custom-control custom-switch">
                       <input type="checkbox" class="custom-control-input" [id]="item.ID" name="example"

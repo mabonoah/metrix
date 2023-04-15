@@ -3,12 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HttpInterceptorService } from './core/interceptor/http-interceptor.service';
+import { StoreModule } from '@ngrx/store';
 import { SharedModule } from './shared/modules/shared.module';
+
+/** Services */
+import { HttpInterceptorService } from './core/interceptor/http-interceptor.service';
 
 /** Components */
 import { AppComponent } from './app.component';
 import { LoginComponent, LayoutComponent, HeaderComponent } from './core/components';
+
+/** Store */
+import { subordinatesReducer } from './store';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,8 @@ import { LoginComponent, LayoutComponent, HeaderComponent } from './core/compone
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forRoot({ subordinates: subordinatesReducer })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

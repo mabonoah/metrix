@@ -3,6 +3,9 @@ import { Subordinate } from '../../models';
 import { SubordinatesController } from '../../controllers';
 import { MetrixHttpResponse } from 'src/app/core/interfaces';
 import { SnackBarService } from 'src/app/shared/services';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectSubordinates, updateSubordinates } from '../../../../store';
 
 @Component({
   selector: 'app-subordinates',
@@ -11,16 +14,20 @@ import { SnackBarService } from 'src/app/shared/services';
 })
 export class SubordinatesComponent {
 
-  dataSource: Subordinate[] = [];
-  modalDataSource: Subordinate[] = [];
+  subordinates$: Observable<Subordinate[]>;
+  modalSubordinates: Subordinate[] = [];
 
   constructor(
     private controller: SubordinatesController,
-    private snackBarService: SnackBarService
-  ) { }
+    private snackBarService: SnackBarService,
+    private store: Store
+  ) {
+    this.subordinates$ = this.store.select(selectSubordinates);
+  }
 
   ngOnInit(): void {
     this.getSubordinates();
+    this.setModalSubordinates();
   }
 
   getSubordinates(): void {
@@ -33,7 +40,7 @@ export class SubordinatesComponent {
 
   private onSuccess(data: Subordinate[]) {
     this.setDefaultSelections(data);
-    this.setDataSource(data);
+    this.setSubordinates(data);
   }
 
   /** Set first three items as selected subordinates. */
@@ -43,26 +50,24 @@ export class SubordinatesComponent {
       data[i].selected = true;
   }
 
-  private setDataSource(data: Subordinate[]) {
-    const cloneData = JSON.parse(JSON.stringify(data));
-    this.dataSource = cloneData;
+  private setSubordinates(data: Subordinate[]) {
+    this.store.dispatch(updateSubordinates({ subordinates: data }));
+  }
+
+  private setModalSubordinates() {
+    this.subordinates$.subscribe((data: Subordinate[]) => {
+      if (!data) return;
+      const subordinatesClone = JSON.parse(JSON.stringify(data));
+      this.modalSubordinates = subordinatesClone;
+    });
   }
 
   private onError(message: string) {
     this.snackBarService.openSnackBar(message, 'Subordinates');
   }
 
-  onOpenModal() {
-    this.setModalDataSource();
-  }
-
-  private setModalDataSource() {
-    const cloneData = JSON.parse(JSON.stringify(this.dataSource));
-    this.modalDataSource = cloneData;
-  }
-
   onSelectItems() {
-    this.setDataSource(this.modalDataSource);
+    this.setSubordinates(this.modalSubordinates);
   }
 
 }
