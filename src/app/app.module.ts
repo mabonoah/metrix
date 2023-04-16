@@ -11,7 +11,7 @@ import { HttpInterceptorService } from './core/interceptor/http-interceptor.serv
 
 /** Components */
 import { AppComponent } from './app.component';
-import { LoginComponent, LayoutComponent, HeaderComponent } from './core/components';
+import { LoginComponent, LayoutComponent, HeaderComponent, MenuComponent } from './core/components';
 
 /** Store */
 import { subordinatesReducer } from './store';
@@ -21,6 +21,7 @@ import { subordinatesReducer } from './store';
     AppComponent,
     LoginComponent,
     HeaderComponent,
+    MenuComponent,
     LayoutComponent
   ],
   imports: [

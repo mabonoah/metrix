@@ -19,8 +19,8 @@ header {
 
 @media (min-width: 1100px) {
     .container-fluid.pl-5.pr-5 {
-        padding-left: 4rem !important;
-        padding-right: 4rem !important;
+        padding-left: 6rem !important;
+        padding-right: 6rem !important;
     }
 }
 

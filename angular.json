@@ -31,9 +31,43 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/assets/vendor/fontawesome-free-5.9.0-web/css/all.min.css",
+              "src/assets/vendor/bootstrap/css/bootstrap.min.css",
+              "src/assets/vendor/hijiri datepicker/css/jquery.calendars.picker.css",
+              "src/assets/vendor/OverlayScrollbars-master/css/OverlayScrollbars.min.css",
+              "src/assets/css/select2.min.css",
+              "src/assets/vendor/dragula/dist/dragula.css",
+              "src/assets/vendor/dsmorse/css/dsmorsecss.css",
+              "src/assets/vendor/dsmorse/css/jquery.gridster.min.css",
+              "src/assets/vendor/image-picker/image-picker.css",
+              "src/assets/vendor/jquery/jquery-ui.css",
+              "src/assets/vendor/dropzoon/dropzoon.css",
+              "src/assets/vendor/datatable/css/dataTables.bootstrap4.min.css",
+              "src/assets/vendor/datatable/css/responsive.bootstrap4.min.css",
+              "src/assets/vendor/devexpress/devexpress.css",
+              "src/assets/css/components/header.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/vendor/select2/js/select2.min.js",
+              "src/assets/vendor/OverlayScrollbars-master/js/OverlayScrollbars.min.js",
+              "src/assets/vendor/dragula/dist/dragula.js",
+              "src/assets/vendor/dragula/example/example.min.js",
+              "src/assets/vendor/dsmorse/js/jquery.gridster.min.js",
+              "src/assets/vendor/image-picker/image-picker.min.js",
+              "src/assets/vendor/jquery/jquery-ui.min.js",
+              "src/assets/vendor/dropzoon/dropzoon.js",
+              "src/assets/vendor/datatable/js/jquery.dataTables.min.js",
+              "src/assets/vendor/scrumboard/jquery-ui.js",
+              "src/assets/vendor/devexpress/data.js",
+              "src/assets/vendor/devexpress/GanttData/Ganttdata.js",
+              "src/assets/js/dynamic-tabs.js",
+              "src/assets/js/attributes.js",
+              "src/assets/js/ui-components.js",
+              "src/assets/js/scripts.js"
+            ]
           },
           "configurations": {
             "production": {
